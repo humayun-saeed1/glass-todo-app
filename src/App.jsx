@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import TodoList from './Todo.jsx'
-import ShowTask from './Showtask.jsx' 
-import { Toaster } from 'react-hot-toast'
+import { useEffect, useState } from 'react' 
+import Home from './Home.jsx'
+import Login from './Login.jsx'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import toast from 'react-hot-toast'
 function App() {
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+  return localStorage.getItem('isLoggedIn') === 'true';
+})
   const [todos, setTodos] = useState(() => {
       const savedTodos = localStorage.getItem('todos');
       return savedTodos ? JSON.parse(savedTodos) : [];
@@ -42,53 +44,45 @@ function App() {
     return true
   })
 
+ const handleLogin = () => {
+    setIsLoggedIn(true)
+    localStorage.setItem('isLoggedIn', 'true')
+  }
+  const onLogout = () =>{
+    setIsLoggedIn(false);
+    localStorage.removeItem('isLoggedIn');
+    toast.success("See you later");
+  } 
+
   return (
-    <div className='min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-black flex flex-col items-center py-12'>
-      <h1 className="text-3xl font-bold text-white mb-8">My Todos</h1>
-      <Toaster 
-        position="top-center"
-        toastOptions={{
-          style: {
-            background: '#333',
-            color: '#fff',
-          },
-        }}
-      />
-      {/* --- THE MEGA GLASS CARD STARTS HERE --- */}
-      <div className="w-full max-w-3xl bg-gray-900/60 backdrop-blur-xl border border-white/10  shadow-2xl overflow-hidden">
+   <BrowserRouter>
+      <Routes>
         
-        {/* 1. TOP SECTION: The Form */}
-        <div className="p-6">
-           <TodoList onAdd={addTask} />
-        </div>
+        <Route path="/Login" element={ 
+            isLoggedIn ? <Navigate to="/" /> : <Login onlogin={handleLogin} /> 
+        } />
 
-        {/* 2. MIDDLE SECTION: The Divider & Tabs */}
-        <div className="px-6">
-            <div className="flex gap-6 border-b border-white/10 pb-2 mb-4">
-              <button 
-                  onClick={() => setView('todo')} 
-                  className={`${view === 'todo' ? "text-green-400 border-green-400" : "text-gray-400 border-transparent"} border-b-2 pb-2 font-bold transition-all`}
-              >
-                  To Do
-              </button>
-              
-              <button 
-                  onClick={() => setView('done')} 
-                  className={`${view === 'done' ? "text-green-400 border-green-400" : "text-gray-400 border-transparent"} border-b-2 pb-2 font-bold transition-all`}
-              >
-                  Done
-              </button>
-            </div>
-        </div>
+       
+        <Route path="/" element={
+            isLoggedIn ? (
+               <Home
+                 addTask={addTask}
+                 deleteTask={deleteTask}
+                 toggleView={toggleView}
+                 onUpdate={onUpdate}
+                 view={view}
+                 setView={setView}
+                 tasksToShow={tasksToShow}
+                 onLogout={onLogout}
+               />
+            ) : (
+               <Navigate to="/Login" />
+            )
+        } />
 
-        {/* 3. BOTTOM SECTION: The List */}
-        <div className="p-6 pt-0">
-           <ShowTask taskList={tasksToShow} onDelete={deleteTask} onToggle={toggleView} onUpdate={onUpdate} />
-        </div>
+      </Routes>
+    </BrowserRouter>
 
-      </div>
-      {/* --- CARD ENDS HERE --- */}
-    </div>
   )
 }
 export default App

@@ -1,21 +1,17 @@
 import { useState } from "react";
 
 export default function UpdateModal({ onCancel, onConfirm }) {
-    // Keeping your exact logic, just fixing the UI
     const [newtask, setNewTask] = useState("");
     const [newdate, setNewDate] = useState("");
     
     return (   
         <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 px-4">
-            {/* Added 'w-full max-w-sm' to control width on phone vs laptop */}
             <div className="bg-gray-900 border border-white/10 p-6 rounded-lg shadow-2xl w-full max-w-sm">
                 
                 <h2 className="text-xl font-bold mb-2 text-white">Update Task</h2>
                 <p className="text-gray-400 mb-6 text-sm">Edit your task details here.</p>
                 
-                {/* FIX: Changed from 'flex justify-end' to 'flex flex-col' 
-                   This stacks inputs vertically so they don't get squashed.
-                */}
+              
                 <div className="flex flex-col gap-4">
                     <input 
                         type="text" 
@@ -34,7 +30,6 @@ export default function UpdateModal({ onCancel, onConfirm }) {
                     />
                 </div>
 
-                {/* Buttons: Cleaned up spacing */}
                 <div className="flex justify-end gap-3 mt-8">
                     <button 
                         onClick={onCancel} 
