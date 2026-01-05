@@ -6,11 +6,10 @@ export default function Home({ addTask, deleteTask, toggleView, onUpdate, view, 
     return(
 
     <div className='min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-black flex flex-col items-center py-12'>
-    <div className='w-full max-w-3xl flex justify-between items-center mb-8 px-4'>
-    <h1 className='text-3xl font-bold text-white '>
-       Hello {currentUser},        
+    <div className='w-full max-w-3xl flex justify-between items-center mb-8 px-4 h-30 backdrop-blur-xl'>
+    <h1  className='text-3xl font-bold text-white '>
+      Hello {currentUser},        
     </h1>
-    <br />
     </div>
      {/* HEADER CONTAINER: Wraps Title and Button */}
     <div className="w-full max-w-3xl flex justify-between items-center mb-8 px-4">
