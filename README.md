@@ -48,7 +48,7 @@ To run this project locally on your machine:
    ```bash
    git clone [https://github.com/]https://github.com/humayun-saeed1/glass-todo-app.git
 2. **Install Dependencies**
-cd [REPO_NAME]
+cd glass-todo-app
 npm install
 3. **Run the Development Server**
 npm run dev

@@ -122,6 +122,7 @@ function App() {
                  setView={setView}
                  tasksToShow={tasksToShow}
                  onLogout={onLogout}
+                 currentUser={currentUser}
                />
             ) : (
                <Navigate to="/Login" />

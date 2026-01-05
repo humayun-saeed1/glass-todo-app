@@ -2,10 +2,16 @@ import { Toaster } from 'react-hot-toast'
 import TodoList from './Todo.jsx'
 import ShowTask from './Showtask.jsx' 
 
-export default function Home({ addTask, deleteTask, toggleView, onUpdate, view, setView, tasksToShow,onLogout }) {
+export default function Home({ addTask, deleteTask, toggleView, onUpdate, view, setView, tasksToShow,onLogout, currentUser }) {
     return(
 
-         <div className='min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-black flex flex-col items-center py-12'>
+    <div className='min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-black flex flex-col items-center py-12'>
+    <div className='w-full max-w-3xl flex justify-between items-center mb-8 px-4'>
+    <h1 className='text-3xl font-bold text-white '>
+       Hello {currentUser},        
+    </h1>
+    <br />
+    </div>
      {/* HEADER CONTAINER: Wraps Title and Button */}
     <div className="w-full max-w-3xl flex justify-between items-center mb-8 px-4">
   
