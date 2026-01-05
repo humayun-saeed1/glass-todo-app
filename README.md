@@ -1,16 +1,55 @@
-# React + Vite
+# 📝 Multi-User React Todo App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic task management application built with **React** and **Tailwind CSS**. 
 
-Currently, two official plugins are available:
+Unlike standard Todo apps, this project features a **simulated multi-user environment**. It uses LocalStorage to create a "mock database," allowing different users to Sign Up, Login, and manage their own private task lists without seeing other users' data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Live Demo
+[Click here to view the Live Project](https://glass-todo-app-fawn.vercel.app/)
 
-## React Compiler
+## ✨ Key Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **🔐 Multi-User Authentication:**
+  - Custom Login and Signup flows.
+  - "Mock Backend" logic: checks if users exist and validates passwords using LocalStorage.
+- **🛡️ Data Isolation:**
+  - Uses dynamic storage keys (`todos_username`) to ensure User A never sees User B's tasks.
+  - Session persistence (stays logged in on refresh).
+- **✅ Task Management:**
+  - Add, Delete, and Update tasks.
+  - specific "Done" vs "To Do" views.
+  - Due Date tracking.
+- **🎨 Responsive UI:**
+  - Built with Tailwind CSS for a modern, dark-mode aesthetic.
+  - Interactive notifications using React Hot Toast.
 
-## Expanding the ESLint configuration
+## 🛠️ Technologies Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Framework:** React (Vite)
+- **Styling:** Tailwind CSS
+- **Routing:** React Router DOM
+- **Notifications:** React Hot Toast
+- **State Management:** React `useState` & `useEffect`
+- **Persistence:** Browser LocalStorage
+
+## ⚙️ How It Works (The Logic)
+
+This app simulates a database using the browser's LocalStorage:
+
+1.  **User Directory:** A `users` array stores credentials: `[{ username: "ali", password: "123" }]`.
+2.  **Data Segmentation:** When a user logs in (e.g., "ali"), the app dynamically switches the storage key to `todos_ali`.
+3.  **Session:** The app tracks the `currentUser` state to prevent unauthorized access to routes.
+
+## 💻 Getting Started
+
+To run this project locally on your machine:
+
+1. **Clone the repository**
+   ```bash
+   git clone [https://github.com/]https://github.com/humayun-saeed1/glass-todo-app.git
+2. **Install Dependencies**
+cd [REPO_NAME]
+npm install
+3. **Run the Development Server**
+npm run dev
+Created by Humayun Saeed - Computer Science Student at Superior University
